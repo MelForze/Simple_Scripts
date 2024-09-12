@@ -64,7 +64,8 @@ if [ "$2" = "-path" ] || [ "$2" = "-everything" ]; then
     # Заменяем символы в URL для URL2
     echo "${URL1} Started!"
     URL2=$(echo $URL1 | sed 's/https:\/\//https_/' | sed 's/http:\/\//http_/' | sed 's/[\.\/]/_/g')
-
+    echo "$URL1" >> "paths/${URL2}_active.txt"
+    
     # Запускаем первую команду
     katana -u "$URL1" -d 5 -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -headless -c 150 -p 1 -silent -f udir >> "paths/${URL2}_active.txt"
     echo "Active DONE"
