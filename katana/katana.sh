@@ -22,11 +22,11 @@ if [ "$2" == "-all" ] || [ "$2" == "-everything" ]; then
     URL2=$(echo "$URL1" | sed 's/https:\/\//https_/' | sed 's/http:\/\//http_/' | sed 's/[\.:\/]/_/g')
 
     # Запускаем первую команду
-    katana -u "$URL1" -d 5 -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -headless -c 150 -p 1 -silent >> "all/${URL2}_active.txt"
+    katana -u "$URL1" -d 5 -crawl-scope -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -headless -c 150 -p 1 -silent >> "all/${URL2}_active.txt"
     Echo "Active DONE"
     
     # Запускаем вторую команду
-    katana -u "$URL1" -d 5 -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -c 150 -p 1 -ps -silent >> "all/${URL2}_passive.txt"
+    katana -u "$URL1" -d 5 -crawl-scope -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -c 150 -p 1 -ps -silent >> "all/${URL2}_passive.txt"
     Echo "Passive DONE"
     
     # Сортируем и убираем дубликаты
@@ -44,11 +44,11 @@ if [ "$2" = "-file" ] || [ "$2" = "-everything" ]; then
     URL2=$(echo "$URL1" | sed 's/https:\/\//https_/' | sed 's/http:\/\//http_/' | sed 's/[\.:\/]/_/g')
 
     # Запускаем первую команду
-    katana -u "$URL1" -d 5 -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -headless -c 150 -p 1 -silent -f ufile >> "files/${URL2}_active.txt"
+    katana -u "$URL1" -d 5 -crawl-scope -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -headless -c 150 -p 1 -silent -f ufile >> "files/${URL2}_active.txt"
     echo "Active DONE"
     
     # Запускаем вторую команду
-    katana -u "$URL1" -d 5 -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -c 150 -p 1 -ps -silent -f ufile >> "files/${URL2}_passive.txt"
+    katana -u "$URL1" -d 5 -crawl-scope -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -c 150 -p 1 -ps -silent -f ufile >> "files/${URL2}_passive.txt"
     echo "Passive DONE"
     
     # Сортируем и убираем дубликаты
@@ -67,11 +67,11 @@ if [ "$2" = "-path" ] || [ "$2" = "-everything" ]; then
     echo "$URL1" >> "paths/${URL2}_active.txt"
     
     # Запускаем первую команду
-    katana -u "$URL1" -d 5 -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -headless -c 150 -p 1 -silent -f udir >> "paths/${URL2}_active.txt"
+    katana -u "$URL1" -d 5 -crawl-scope -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -headless -c 150 -p 1 -silent -f udir >> "paths/${URL2}_active.txt"
     echo "Active DONE"
     
     # Запускаем вторую команду
-    katana -u "$URL1" -d 5 -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -c 150 -p 1 -ps -silent -f udir >> "paths/${URL2}_passive.txt"
+    katana -u "$URL1" -d 5 -crawl-scope -js-crawl -jsluice -crawl-duration 15m -known-files all -disable-redirects -c 150 -p 1 -ps -silent -f udir >> "paths/${URL2}_passive.txt"
     echo "Passive DONE"
     
     # Сортируем и убираем дубликаты
